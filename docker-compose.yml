@@ -1,0 +1,36 @@
+services:
+  db:
+    image: "mysql:8.1"
+    volumes:
+      - mysqldata:/var/lib/mysql
+    env_file: .env
+    environment:
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+
+  redis:
+    image: redis/redis-stack:7.2.0-v0
+    volumes:
+     - cache:/var/lib/redis/data
+
+  api:
+    build: .
+    env_file: .env
+    ports: 
+     - $NODE_APP_PORT:$NODE_APP_PORT
+    environment:
+      - DB_HOST=db
+      - DB_USER=$MYSQL_USER
+      - DB_PASSWORD=$MYSQL_PASSWORD
+      - DB_NAME=$MYSQL_DATABASE
+      - DB_PORT=$MYSQL_DOCKER_PORT
+      - REDIS_CONNECTION_URL=redis://redis:${REDIS_DOCKER_PORT}
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  mysqldata:
+  cache:

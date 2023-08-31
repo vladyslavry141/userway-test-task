@@ -1,0 +1,31 @@
+{
+  "name": "userway-test-task",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "prepare:dev": "cp ./.env.dev ./.env",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladyslavry141/userway-test-task.git"
+  },
+  "author": "Vladyslav Rybak <vladyslavry141@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vladyslavry141/userway-test-task/issues"
+  },
+  "homepage": "https://github.com/vladyslavry141/userway-test-task#readme",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "base62": "^2.0.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0",
+    "redis": "^4.6.8",
+    "sequelize": "^6.32.1"
+  }
+}
